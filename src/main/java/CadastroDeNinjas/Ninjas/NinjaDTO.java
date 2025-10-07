@@ -16,9 +16,6 @@ public class NinjaDTO {
     private String imgUrl;
     private int idade;
     private String rank;
-    public void setId(Long id) {
-        this.id = id;
-    }
     private MissoesModel missoes;
 
 }
