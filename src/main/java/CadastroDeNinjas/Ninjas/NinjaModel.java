@@ -30,12 +30,13 @@ public class NinjaModel {
     @Column(name = "img_url")
     private String imgUrl;
 
+    @Column (name = "rank")
+    private String rank;
+
     @Column(name = "idade")
     private int idade;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     //@ManyToone um ninja tem uma unica missao
     @ManyToOne
