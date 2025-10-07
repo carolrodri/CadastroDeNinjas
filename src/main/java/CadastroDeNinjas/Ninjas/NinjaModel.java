@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Data //Cria todos os getters and setters (fica "invisivel")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "missoes")
 public class NinjaModel {
 
     @Id
@@ -35,7 +37,6 @@ public class NinjaModel {
 
     @Column(name = "idade")
     private int idade;
-
 
 
     //@ManyToone um ninja tem uma unica missao
