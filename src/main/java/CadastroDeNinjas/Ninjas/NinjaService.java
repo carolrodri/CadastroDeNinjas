@@ -31,6 +31,10 @@ public class NinjaService {
         return ninjaModel.map(ninjaMapper::map).orElse(null);
     }
 
+    public NinjaDTO buscarNinjaParaAtualizacao(Long id) {
+        return listarNinjasPorId(id);
+    }
+
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
         NinjaModel result = ninjaMapper.map(ninjaDTO);
         NinjaModel ninja = ninjaRepository.save(result);

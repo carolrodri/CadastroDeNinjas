@@ -1,6 +1,6 @@
 package CadastroDeNinjas.Ninjas;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -72,5 +72,12 @@ public class NinjaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("O ninja com id " + id + " nao foi encontrado");
         }
+    }
+
+    @PostMapping("/salvar-atualizacao/{id}")
+    public String salvarAtualizacaoNinja(@PathVariable Long id, @ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes) {
+        ninjaService.atualizarNinja(id, ninja);
+        redirectAttributes.addFlashAttribute("mensagem", "Ninja atualizado com sucesso!");
+        return "redirect:/ninjas/ui/listar";
     }
 }
