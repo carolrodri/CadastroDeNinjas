@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar todas as missões</title>
+    <style>
+    body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6; /* Fundo cinza claro */
+            color: #333;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o conteúdo */
+        }
+
+        /* 2. Título */
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ff7700; /* Linha laranja de destaque */
+            padding-bottom: 10px;
+            font-size: 2em;
+        }
+
+        /* 3. Estilo da Tabela */
+        table {
+            width: 80%; /* Ocupa uma boa largura da tela */
+            border-collapse: collapse; /* Remove o espaço entre as bordas */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            background-color: #ffffff; /* Fundo branco */
+            border-radius: 8px; /* Bordas arredondadas */
+            overflow: hidden; /* Garante que os arredondamentos funcionem */
+        }
+
+        /* 4. Cabeçalho (Thead) */
+        thead {
+            background-color: #ff7700; /* Fundo laranja */
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        /* 5. Corpo da Tabela (Tbody) */
+        td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee; /* Linha divisória suave */
+        }
+
+        /* 6. Efeito Zebra (linhas alternadas) */
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Cinza muito claro para linhas pares */
+        }
+
+        /* 7. Efeito Hover (passar o mouse) */
+        tbody tr:hover {
+            background-color: #ffeccf; /* Laranja clarinho ao passar o mouse */
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <h1>Listar Missões</h1>
+
+  <table>
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Dificuldade</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <tr th:each = "missao: ${missoes}">
+
+          <td th:text="${missao.id}"></td>
+          <td th:text="${missao.nome}"></td>
+          <td th:text="${missao.dificuldade}"></td>
+
+          </tr> </tbody>
+
+
+    </table>
+
+    </body>
+    </html>

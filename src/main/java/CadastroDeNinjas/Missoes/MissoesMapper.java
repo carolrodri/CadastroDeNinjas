@@ -1,5 +1,8 @@
 package CadastroDeNinjas.Missoes;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MissoesMapper {
 
     public MissoesModel map (MissoesDTO missoesDTO) {
@@ -14,9 +17,9 @@ public class MissoesMapper {
     public MissoesDTO map (MissoesModel missoesModel) {
 
         MissoesDTO missoesDTO = new MissoesDTO();
-        missoesDTO.setId(missoesDTO.getId());
-        missoesDTO.setNome(missoesDTO.getNome());
-        missoesDTO.setDificuldade(missoesDTO.getDificuldade());
+        missoesDTO.setId(missoesModel.getId());
+        missoesDTO.setNome(missoesModel.getNome());
+        missoesDTO.setDificuldade(missoesModel.getDificuldade());
 
         return missoesDTO;
     }
