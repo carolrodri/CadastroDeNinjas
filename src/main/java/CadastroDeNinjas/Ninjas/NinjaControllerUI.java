@@ -1,5 +1,7 @@
 package CadastroDeNinjas.Ninjas;
 
+import CadastroDeNinjas.Missoes.MissoesDTO;
+import CadastroDeNinjas.Missoes.MissoesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,19 @@ import java.util.List;
 public class NinjaControllerUI {
 
     private final NinjaService ninjaService;
+    private final MissoesService missoesService;
 
-    public NinjaControllerUI(NinjaService ninjaService) {
+    public NinjaControllerUI(NinjaService ninjaService, MissoesService missoesService) {
         this.ninjaService = ninjaService;
+        this.missoesService = missoesService;
+    }
+
+    @GetMapping("/adicionar")
+    public String mostrarFormularioAdicionarNinja(Model model) {
+        model.addAttribute("ninja", new NinjaDTO());
+        List<MissoesDTO> missoesDisponiveis = missoesService.listarMissoes();
+        model.addAttribute("missoesDisponiveis", missoesDisponiveis);
+        return "adicionarNinja";
     }
 
     @GetMapping("/listar")
@@ -43,24 +55,22 @@ public class NinjaControllerUI {
         }
     }
 
-    @GetMapping("/atualizar/{id}")
-    public String mostrarFormularioAtualizarNinja(@PathVariable Long id, Model model) {
-        NinjaDTO ninja = ninjaService.buscarNinjaParaAtualizacao(id);
 
+    @GetMapping("/atualizar/{id}")
+    public String mostrarFormularioAdtualizarNinja(@PathVariable Long id, Model model) {
+        NinjaDTO ninja = ninjaService.buscarNinjaParaAtualizacao(id);
+        List<MissoesDTO> missoesDisponiveis = missoesService.listarMissoes();
+        model.addAttribute("missoesDisponiveis", missoesDisponiveis);
         if (ninja != null) {
             model.addAttribute("ninja", ninja);
             return "atualizarNinja";
         } else {
-            model.addAttribute("mensagem", "Ninja não encontrado");
+            model.addAttribute("mensagem", "Ninja com esse id não encontrado.");
             return "listarNinjas";
         }
     }
 
-    @GetMapping("/adicionar")
-    public String mostrarFormularioAdicionarNinja(Model model) {
-        model.addAttribute("ninja", new NinjaDTO());
-        return "adicionarNinja";
-    }
+
 
     @PostMapping("/salvar")
     public String salvarNinja(@ModelAttribute NinjaDTO ninja, RedirectAttributes redirectAttributes){

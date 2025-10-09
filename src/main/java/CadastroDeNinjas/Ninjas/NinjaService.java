@@ -1,5 +1,7 @@
 package CadastroDeNinjas.Ninjas;
 
+import CadastroDeNinjas.Missoes.MissoesModel;
+import CadastroDeNinjas.Missoes.MissoesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +13,12 @@ public class NinjaService {
 
     private final NinjaRepository ninjaRepository;
     private final NinjaMapper ninjaMapper;
+    private final MissoesRepository missoesRepository;
 
-    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper, MissoesRepository missoesRepository) {
         this.ninjaRepository = ninjaRepository;
         this.ninjaMapper = ninjaMapper;
+        this.missoesRepository = missoesRepository;
     }
 
     //Listar todos os meus ninjas
@@ -36,9 +40,19 @@ public class NinjaService {
     }
 
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
-        NinjaModel result = ninjaMapper.map(ninjaDTO);
-        NinjaModel ninja = ninjaRepository.save(result);
-        return ninjaMapper.map(ninja);
+        MissoesModel missaoModel = null;
+
+        if (ninjaDTO.getIdMissao() != null) {
+            missaoModel = missoesRepository.findById(ninjaDTO.getIdMissao()).orElse(null);
+        }
+
+        NinjaModel ninjaModel = ninjaMapper.map(ninjaDTO);
+        if (missaoModel != null) {
+            ninjaModel.setMissoes(missaoModel);
+        }
+        NinjaModel ninjaSalvo = ninjaRepository.save(ninjaModel);
+
+        return ninjaMapper.map(ninjaSalvo);
     }
 
     //Deletar o ninja - Tem que ser um metodo VOID

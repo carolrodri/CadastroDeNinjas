@@ -4,38 +4,44 @@
     <meta charset="UTF-8">
     <title>Listar todas as missões</title>
     <style>
-    body {
+        <style>
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6; /* Fundo cinza claro */
+            background-color: #f4f7f6;
             color: #333;
             padding: 40px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza o conteúdo */
+            align-items: center;
         }
 
-        /* 2. Título */
         h1 {
             color: #4a4a4a;
             margin-bottom: 30px;
-            border-bottom: 3px solid #ff7700; /* Linha laranja de destaque */
+            border-bottom: 3px solid #ff7700;
             padding-bottom: 10px;
             font-size: 2em;
+            width: 80%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
         }
 
-        /* 3. Estilo da Tabela */
         table {
-            width: 80%; /* Ocupa uma boa largura da tela */
-            border-collapse: collapse; /* Remove o espaço entre as bordas */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            background-color: #ffffff; /* Fundo branco */
-            border-radius: 8px; /* Bordas arredondadas */
-            overflow: hidden; /* Garante que os arredondamentos funcionem */
+            text-align: center;
+            width: 80%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* 4. Cabeçalho (Thead) */
         thead {
-            background-color: #ff7700; /* Fundo laranja */
+            background-color: #ff7700;
             color: white;
             text-transform: uppercase;
             font-size: 0.9em;
@@ -47,27 +53,50 @@
             font-weight: 600;
         }
 
-        /* 5. Corpo da Tabela (Tbody) */
         td {
             padding: 12px 20px;
-            border-bottom: 1px solid #eee; /* Linha divisória suave */
+            border-bottom: 1px solid #eee;
         }
 
-        /* 6. Efeito Zebra (linhas alternadas) */
         tbody tr:nth-child(even) {
-            background-color: #f9f9f9; /* Cinza muito claro para linhas pares */
+        text-align: center;
+            background-color: #f9f9f9;
         }
 
-        /* 7. Efeito Hover (passar o mouse) */
         tbody tr:hover {
-            background-color: #ffeccf; /* Laranja clarinho ao passar o mouse */
+            background-color: #ffeccf;
             cursor: default;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: sans-serif;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-container {
+        width: 80%;
+        text-align: center;
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
         }
     </style>
 </head>
 <body>
     <h1>Listar Missões</h1>
-
   <table>
       <thead>
           <tr>
@@ -78,16 +107,26 @@
       </thead>
 
       <tbody>
+
           <tr th:each = "missao: ${missoes}">
 
           <td th:text="${missao.id}"></td>
           <td th:text="${missao.nome}"></td>
           <td th:text="${missao.dificuldade}"></td>
 
-          </tr> </tbody>
+
+
+          </tr>
+
+
+
+
+      </tbody>
 
 
     </table>
-
+        <div class="botao-container">
+            <a th:href="@{/ninjas/ui/listar}" class="btn">Voltar</a>
+        </div>
     </body>
     </html>

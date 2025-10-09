@@ -6,131 +6,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tabela de Ninjas</title>
     <style>
-    body {
+        body {
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
     background-color: #f4f7f6;
+
     color: #333;
+
     padding: 20px;
+
     margin: 0;
+
     }
+
+
 
     h1 {
+
     color: #4a4a4a;
+
     border-bottom: 2px solid #ff7700; /* Linha de destaque */
+
     padding-bottom: 10px;
+
     margin-bottom: 30px;
+
     }
+
+
 
     /* ESTILO DA TABELA */
+
     table {
+
     width: 100%;
+
     border-collapse: collapse; /* Remove o espaçamento entre as bordas das células */
+
     margin-top: 20px;
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para efeito moderno */
+
     background-color: #fff;
+
     border-radius: 8px; /* Cantos arredondados */
+
     overflow: hidden; /* Garante que a borda arredondada se aplique */
+
     }
+
+
 
     /* CABEÇALHO (THEAD) */
+
     thead th {
+
     background-color: #ff7700; /* Cor primária de destaque (Laranja/Ouro) */
+
     color: white;
+
     padding: 15px 10px;
+
     text-align: left;
+
     font-weight: 600;
+
     text-transform: uppercase;
+
     font-size: 0.9em;
+
     letter-spacing: 0.5px;
+
     }
+
+
 
     /* LINHAS DO CORPO (TBODY) */
+
     tbody tr {
+
     border-bottom: 1px solid #e0e0e0;
+
     }
+
+
 
     /* Efeito Hover nas linhas */
+
     tbody tr:hover {
+
     background-color: #fff3e6; /* Fundo mais claro ao passar o mouse */
+
     cursor: default;
+
     }
+
+
 
     /* CÉLULAS DE DADOS (TD) */
+
     td {
+
     padding: 12px 10px;
+
     vertical-align: middle;
+
     font-size: 0.9em;
+
     }
 
+
+
     /* Estilo para a imagem do ninja */
+
     .ninja-img {
+
     width: 60px; /* Redimensiona a imagem para ficar menor na célula */
+
     height: 60px;
+
     border-radius: 50%; /* Transforma a imagem em um círculo */
+
     object-fit: cover; /* Garante que a imagem preencha o círculo */
+
     border: 2px solid #ff7700;
+
     }
+
+
+
 
 
     /* ESTILOS DOS BOTÕES (LINKS DE AÇÃO) */
 
+
+
     /* Estilo base para todos os botões */
+
     .btn {
+
     display: inline-block;
+
     padding: 6px 10px;
+
     margin-right: 5px;
+
     border: none;
+
     border-radius: 4px;
+
     text-decoration: none;
+
     font-size: 0.8em;
+
     font-weight: 600;
+
     cursor: pointer;
+
     transition: background-color 0.3s ease, transform 0.1s ease;
+
     text-align: center;
+
     }
+
+
 
     /* Botão de Adicionar (exemplo) */
+
     .btn-add {
+
     background-color: #007bff; /* Azul */
+
     color: white;
+
     margin-bottom: 20px;
+
     padding: 10px 15px;
+
     font-size: 1em;
+
     }
+
     .btn-add:hover {
+
     background-color: #0056b3;
+
     }
+
+
 
     /* Botão de Detalhes */
+
     .btn-detail {
+
     background-color: #28a745; /* Verde */
+
     color: white;
+
     }
+
     .btn-detail:hover {
+
     background-color: #1e7e34;
+
     }
+
+
 
     /* Botão de Alterar/Editar */
+
     .btn-edit {
+
     background-color: #ffc107; /* Amarelo */
+
     color: #333;
+
     }
+
     .btn-edit:hover {
+
     background-color: #e0a800;
+
     }
+
+
 
     /* Botão de Deletar */
+
     .btn-delete {
+
     background-color: #dc3545; /* Vermelho */
+
     color: white;
-    }
-    .btn-delete:hover {
-    background-color: #c82333;
+
     }
 
+    .btn-delete:hover {
+
+    background-color: #c82333;
+
+    }
+
+
+
     /* Efeito de click em todos os botões */
+
     .btn:active {
+
     transform: scale(0.98);
+
     }
     </style>
 </head>
@@ -138,6 +263,7 @@
 <h1>Lista de ninjas</h1>
 
 <a th:href="@{/ninjas/ui/adicionar}" class="btn btn-add">Adicionar Novo Ninja</a>
+<a th:href="@{/missoes/ui/listar}" class="btn btn-add">Visualizar missões</a>
 
 <table>
     <thead>
@@ -162,7 +288,7 @@
         <td th:text="${ninja.rank}"></td>
         <td>
             <span th:if="${ninja.missoes}"><span th:text="${ninja.missoes.nome}"></span>, Dificuldade: <span th:text="${ninja.missoes.dificuldade}"></span></span>
-            <span th:if="${ninja.missoes == null}">Sem Missões cadastradas para o ninja</span>
+            <span th:if="${ninja.missoes == null}">Sem missão cadastrada para o ninja.</span>
         </td>
 
         <td>
